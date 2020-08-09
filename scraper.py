@@ -26,4 +26,5 @@ all_months = webpage_soup.findAll("div", {"class":"archive-box"})
 
 month = all_months[0].findAll("a", {"href":"/lotto/august-2020"})
 
+print(all_months)
 print(month)
