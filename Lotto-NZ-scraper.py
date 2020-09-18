@@ -39,7 +39,7 @@ bb = []
 pb = []
 all_balls = []
 
-#for link in end_urls:
+# iterate every draw and parse html, then extract relevant class data
 for link in end_urls:
     current_link = (baseUrl + link)
     client2 = uo(current_link)
@@ -48,6 +48,7 @@ for link in end_urls:
     webpage2_soup = soup(webpage2, "html.parser")
     extract_results = webpage2_soup.findAll("div", {"class":"row"})
 
+# get all ball numbers
     try:
         print(current_link)
         for lines in extract_results[1:]:
@@ -59,6 +60,7 @@ for link in end_urls:
     except:
         pass
 
+# iterate all_balls and allocate to appropriate ball list
     while len(all_balls) > 0:
         b1.append(all_balls.pop(0))
         b2.append(all_balls.pop(0))
@@ -68,6 +70,7 @@ for link in end_urls:
         b6.append(all_balls.pop(0))
         bb.append(all_balls.pop(0))
 
+# function to find most frequently occuring number in list
 def most_frequent(arr):
     frequency = {}
     for element in arr:
@@ -81,6 +84,7 @@ def most_frequent(arr):
     for key in sorted(frequency):
         return "%s" % (key)
 
+# function to find average number in list
 def average(arr):
     sum = 0
     for element in arr:
@@ -89,6 +93,7 @@ def average(arr):
         sum += element
     return round(sum / len(arr))
 
+# prints most frequent number per ball and average per ball
 try:
     print("The most frequently occuring ball number 1 is", most_frequent(b1))
     print("The most frequently occuring ball number 2 is", most_frequent(b2))
